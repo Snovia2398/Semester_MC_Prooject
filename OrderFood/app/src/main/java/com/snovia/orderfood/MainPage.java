@@ -115,7 +115,18 @@ public class MainPage extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
         mainPageBinding.MainPageRecyclerView.setLayoutManager(linearLayoutManager);
 
+        mainPageBinding.MainPageSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
 
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                mainAdapter.getFilter().filter(newText.toString());
+                return false;
+            }
+        });
     }
     @Override
     public boolean onCreateOptionsMenu(Menu cart) {

@@ -8,7 +8,12 @@
     android:orientation="vertical"
     tools:context=".MainPage">
 
-    
+    <SearchView
+        android:id="@+id/MainPageSearchView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:queryHint="Search Here"
+        android:iconifiedByDefault="false"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/MainPageRecyclerView"

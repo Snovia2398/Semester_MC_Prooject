@@ -40,6 +40,17 @@ public class MainActivity extends AppCompatActivity {
         GridLayoutManager gridLayoutManager=new GridLayoutManager(this,2);
         mainBinding.MainItemsRecyclerView.setLayoutManager(gridLayoutManager);
 
+        mainBinding.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
 
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                mainItemsAdapter.getFilter().filter(newText.toString());
+                return false;
+            }
+        });
     }
 }
