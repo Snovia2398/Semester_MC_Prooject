@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">OrderFood</string>
     <string name="descriptionFood">Meaty Portobello mushrooms makes for perfect vegetarian burger</string>
+    <string name="channel_name">Channel One</string>
 </resources>

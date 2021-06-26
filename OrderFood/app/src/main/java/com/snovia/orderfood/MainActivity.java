@@ -1,11 +1,18 @@
 package com.snovia.orderfood;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.snovia.orderfood.Adapters.MainItemsAdapter;
 import com.snovia.orderfood.Models.MainItemsModel;
@@ -52,5 +59,30 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void ShowNotification() {
+        int notifyID = 1;
+        String CHANNEL_ID = "my_channel_01";
+        CharSequence name = getString(R.string.channel_name);
+        int importance = NotificationManager.IMPORTANCE_HIGH;
+        NotificationChannel mChannel = new NotificationChannel(CHANNEL_ID, name, importance);
+        Notification notification = new Notification.Builder(MainActivity.this)
+                .setContentTitle("Foodie House")
+                .setContentText("You are at right place. Order what you like.")
+                .setSmallIcon(R.drawable.foodie_house)
+                .setChannelId(CHANNEL_ID)
+                .build();
+
+        NotificationManager notificationManager = getSystemService(NotificationManager.class);
+        notificationManager.createNotificationChannel(mChannel);
+
+        notificationManager.notify(1, notification);
+    }
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    protected void onStart()
+    {
+        super.onStart();
+        ShowNotification();
     }
 }
